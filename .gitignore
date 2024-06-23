@@ -1,0 +1,5 @@
+.venv/
+test.py
+dist/
+*.cast
+__pycache__/
