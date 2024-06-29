@@ -10,7 +10,6 @@ def generate_diff(file1, file2):
     for key in sorted(all_keys):
         value1 = file1.get(key)
         value2 = file2.get(key)
-        
         if value1 is None:
             diff_lines.append(f"  + {key}: {format_value(value2)}")
         elif value2 is None:
