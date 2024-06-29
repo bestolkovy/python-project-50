@@ -1,5 +1,5 @@
 import argparse
-from gendiff.stuff.gendiff_mod import generate_diff
+from gendiff import generate_diff
 import json
 
 
