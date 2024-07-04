@@ -3,8 +3,8 @@ import json
 
 
 def test_compare():
-    file1 = json.load(open('./fixtures/file1.json'))
-    file2 = json.load(open('./fixtures/file1.json'))
+    file1 = json.load(open('./tests/fixtures/file1.json'))
+    file2 = json.load(open('./tests/fixtures/file2.json'))
     assert generate_diff(file1, file2) == '''{
   - follow: false
     host: hexlet.io
@@ -12,4 +12,4 @@ def test_compare():
   - timeout: 50
   + timeout: 20
   + verbose: true
-} '''
+}'''
