@@ -16,10 +16,23 @@ gendiff = "gendiff.scripts.gendiff:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-prompt = "^0.4.1"
+
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.0.0"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "flake8"
+]
 
 [build-system]
 requires = ["poetry-core"]
