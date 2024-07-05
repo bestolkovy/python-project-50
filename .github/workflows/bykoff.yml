@@ -37,4 +37,12 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytes
+    - name: Upload coverage to CodeClimate
+      run: |
+        pip install codeclimate-test-reporter
+        codeclimate-test-reporter before-build
+        pytest --cov-report xml --cov=.
+        codeclimate-test-reporter after-build --exit-code $?
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
