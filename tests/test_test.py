@@ -1,6 +1,5 @@
 from gendiff import generate_diff, parsing
 import json
-import yaml
 
 
 def test_compare():

@@ -10,3 +10,4 @@
 3. poetry publish --dry-run
 4. python3 -m pip install  dist/*.whl
 [![asciicast](https://asciinema.org/a/gh2IrNKLypoEJ5Ozi9uLvtFJz.svg)](https://asciinema.org/a/gh2IrNKLypoEJ5Ozi9uLvtFJz)
+[![asciicast](https://asciinema.org/a/667038.svg)](https://asciinema.org/a/667038)
