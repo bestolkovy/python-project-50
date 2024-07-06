@@ -10,5 +10,5 @@ def test_compare():
 
 
 def test_parsing():
-    assert parsing(json.load(open('./tests/fixtures/file1.json'))) == {'host': 'hexlet.io', 'timeout': 50, 'proxy': '123.234.53.22', 'follow': False}
-    assert parsing(yaml.safe_load(open('./tests/fixtures/file2.yml'))) == {'timeout': 20, 'verbose': True, 'host': 'hexlet.io'}
+    assert parsing('./tests/fixtures/file1.json') == {'host': 'hexlet.io', 'timeout': 50, 'proxy': '123.234.53.22', 'follow': False} # noqa
+    assert parsing('./tests/fixtures/file2.yml') == {'timeout': 20, 'verbose': True, 'host': 'hexlet.io'} # noqa
