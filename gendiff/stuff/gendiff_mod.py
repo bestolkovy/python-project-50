@@ -18,6 +18,7 @@ def generate_diff(file1, file2):
             diff_lines.append(f"  - {key}: {format_value(value1)}")
             diff_lines.append(f"  + {key}: {format_value(value2)}")
         else:
-            diff_lines.append(f"    {key}: {format_value(value1)}")
+            diff_lines.append(f"    {key}: {format_value(value1)}") 
+        print (diff_lines)
 
     return "{\n" + "\n".join(diff_lines) + "\n}"
