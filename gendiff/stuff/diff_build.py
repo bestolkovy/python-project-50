@@ -1,5 +1,6 @@
-from gendiff import parsing
-# нам надо два словаря
+# нам надо два словаря. 
+# тута из двух разных форматов строится один дифф формат, который потом будет выводится в трех разных.
+# диффом будет выступать блядский словарь нахуй.
 
 
 def diff_build(dict1, dict2):
@@ -22,8 +23,3 @@ def diff_build(dict1, dict2):
     return diff
 
 
-dic1 = parsing('/home/corleone/python-project-50/tests/fixtures/nested1.json')
-dic2 = parsing('/home/corleone/python-project-50/tests/fixtures/nested2.json')
-
-diff = diff_build(dic1, dic2)
-print(diff)
