@@ -4,7 +4,6 @@ from gendiff import diff_build
 from gendiff import format_data
 
 
-
 def main():
     parser = argparse.ArgumentParser(
         description='Compares two configuration files and shows a difference.')

@@ -1,42 +1,41 @@
-# эту хуету в форматтеры отправить
-def format_value1(value):
-    if isinstance(value, bool):
-        return 'true' if value else 'false'
-    return value
+def format_data(data):
+    result = '{\n'
+    
+    for item in data:
+        status = item['status']
+        key = item['key']
+        depth = item['depth']
+        indent = '    ' * depth
+
+        # Проверяем, есть ли ключ 'value' в элементе
+        value = item.get('value', None)
+        
+        if status == 'nested' and isinstance(value, list):
+            result += f'{indent}  {key}: {format_data(value)}'
+        else:
+            if status == 'added':
+                result += f'{indent}+ {key}: {format_value(value, depth)}\n'
+            elif status == 'deleted':
+                result += f'{indent}- {key}: {format_value(value, depth)}\n'
+            elif status == 'changed':
+                result += f'{indent}- {key}: {format_value(item["value_old"], depth)}\n'
+                result += f'{indent}+ {key}: {format_value(item["value_new"], depth)}\n'
+            else:
+                result += f'{indent}  {key}: {format_value(value, depth)}\n'
+    
+    result += '    ' * (depth - 1) + '}\n'
+    return result
 
 
-# здесь у нас уже должен быть готовый дифф со всеми атрибутами эддед, ченджед.
-def format_value(value, indent=1):
-    """Formats value recursively if it's a dictionary, or just returns string."""
+def format_value(value, depth):
+    indent = '    ' * depth
     if isinstance(value, dict):
-        items = []
+        formatted = '{\n'
         for k, v in value.items():
-            items.append(f'{"...." * indent}{k}: {format_value(v, indent + 1)}')
-        return '{\n' + '\n'.join(items) + f'\n{"...." * (indent - 1)}}}'
+            formatted += f'{indent}    {k}: {v}\n'
+        formatted += indent + '}'
+        return formatted
+    elif isinstance(value, list):
+        return format_data(value)
     else:
-        return str(value).lower() if isinstance(value, bool) else str(value)
-
-
-def format_data(d, indent=1):
-    formatted_lines = []
-    for key, value in d.items():
-        status = value['status']
-        if status == 'unchanged':
-            formatted_lines.append(f'{".." * indent}{key}: {format_value(value["value"], indent)}')
-        elif status == 'deleted':
-            formatted_lines.append(f'{"...." * (indent - 1)}- {key}: {format_value(value["value"], indent)}')
-        elif status == 'added':
-            formatted_lines.append(f'{"...." * (indent - 1)}+ {key}: {format_value(value["value"], indent)}')
-        elif status == 'changed':
-            formatted_lines.append(f'{"...." * (indent - 1)}- {key}: {format_value(value["value_old"], indent)}')
-            formatted_lines.append(f'{"...." * (indent - 1)}+ {key}: {format_value(value["value_new"], indent)}')
-        elif status == 'nested':
-            formatted_lines.append(f'{"...." * indent}{key}: {{')
-            formatted_lines.append(format_data(value['value'], indent + 1))
-            formatted_lines.append(f'{"...." * indent}}}')
-    return '\n'.join(formatted_lines)
-
-
-#formatted_str = "{\n" + format_data(data, 1) + "\n}"
-#print(formatted_str)
-
+        return str(value)
