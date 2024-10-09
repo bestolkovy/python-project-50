@@ -7,7 +7,7 @@ def format_data(data):
         depth = item['depth']
         indent = '    ' * depth
 
-        # Проверяем, есть ли ключ 'value' в элементе
+        # Проверяем, есть ли ключ 'value' в элементcccе
         value = item.get('value', None)
         
         if status == 'nested' and isinstance(value, list):
