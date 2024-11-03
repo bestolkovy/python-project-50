@@ -1,4 +1,4 @@
-from gendiff import format_data, diff_build, format_value, parsing
+from gendiff import format_data, diff_build, parsing
 import json
 
 
