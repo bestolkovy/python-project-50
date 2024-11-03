@@ -27,7 +27,6 @@ def format_data(data):
         key = item['key']
         depth = item['depth']
         indent = '    ' * depth
-        # Проверяем, есть ли ключ 'value' в элементе
         value = item.get('value', None)
         if status == 'nested' and isinstance(value, list):
             result += f'{indent}    {key}: {format_data(value)}\n'
@@ -37,8 +36,8 @@ def format_data(data):
             elif status == 'deleted':
                 result += f'{indent}  - {key}: {format_value(value, depth)}\n'
             elif status == 'changed':
-                result += f'{indent}  - {key}: {format_value(item["value_old"], depth)}\n'
-                result += f'{indent}  + {key}: {format_value(item["value_new"], depth)}\n'
+                result += f'{indent}  - {key}: {format_value(item["value_old"], depth)}\n'  # noqa: E501
+                result += f'{indent}  + {key}: {format_value(item["value_new"], depth)}\n'  # noqa: E501
             else:
                 result += f'{indent}    {key}: {format_value(value, depth)}\n'
     result += '    ' * (depth) + '}'
