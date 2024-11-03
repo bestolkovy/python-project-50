@@ -5,10 +5,10 @@ def dict_to_string(d, depth):
     for key, value in d.items():
         result += f"{indent_space}    {key}: "
         if isinstance(value, dict):
-            result += dict_to_string(value, depth + 1)
+            result += dict_to_string(value, depth + 1) + '\n'
         else:
             result += f"{value}\n"
-    result += f"{indent_space}}}\n"
+    result += f"{indent_space}}}"
     return result
 
 
