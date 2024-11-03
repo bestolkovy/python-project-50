@@ -1,19 +1,14 @@
-def build_diff_node(status, key, depth, **kwargs):
-    diff_node = {'status': status, 'key': key, 'depth': depth}
-    return diff_node.update(**kwargs)
-
-
 def format_value(value):
     if isinstance(value, bool):
         value = str(value).lower()
-    else:
-        value = str(value)
+    #else:
+        #value = str(value)
     if value == 'None':
         value = 'null'
     return value
 
 
-def diff_build(dict1, dict2, depth=1):
+def diff_build(dict1, dict2, depth=0):
     all_keys = dict1.keys() | dict2.keys()
     #print (sorted(all_keys))
     diff = []
@@ -30,7 +25,5 @@ def diff_build(dict1, dict2, depth=1):
         else:
             diff.append({'status': 'changed', 'key': key, 'depth': depth, 'value_old': format_value(dict1[key]),
                          'value_new': format_value(dict2[key])})
-    print(diff)
-    print('  ')
-
+    #print(diff)        
     return diff
