@@ -1,19 +1,18 @@
-from gendiff import format_data, diff_build, parsing
+from gendiff import generate_diff
+from gendiff import parsing
 import json
 
 
 def test_compare():
-    file1 = json.load(open('./tests/fixtures/file1.json'))
-    file2 = json.load(open('./tests/fixtures/file2.json'))
-    diff = diff_build(file1, file2)
-    assert format_data(diff) == open('./tests/fixtures/test1.txt').read() # noqa
+    file1 = './tests/fixtures/file1.json'
+    file2 = './tests/fixtures/file2.json'
+    assert generate_diff(file1, file2) == open('./tests/fixtures/test1.txt').read() # noqa
 
 
 def test_compare2():  # добавить yml
-    nested1j = json.load(open('./tests/fixtures/nested1.json'))
-    nested2j = json.load(open('./tests/fixtures/nested2.json'))
-    diff = diff_build(nested1j, nested2j)
-    assert format_data(diff) == open('./tests/fixtures/nested_test.txt').read() # noqa
+    nested1j = './tests/fixtures/nested1.json'
+    nested2j = './tests/fixtures/nested2.json'
+    assert generate_diff(nested1j, nested2j) == open('./tests/fixtures/nested_test.txt').read() # noqa
 
 
 def test_parsing():
