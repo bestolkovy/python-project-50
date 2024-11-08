@@ -42,4 +42,3 @@ def stylish(data):
                 result += f'{indent}    {key}: {format_value(value, depth)}\n'
     result += '    ' * (depth) + '}'
     return result
-
