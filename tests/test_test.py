@@ -1,6 +1,5 @@
 from gendiff import generate_diff
 from gendiff import parsing
-import json
 
 
 def test_compare():
@@ -12,7 +11,13 @@ def test_compare():
 def test_compare2():  # добавить yml
     nested1j = './tests/fixtures/nested1.json'
     nested2j = './tests/fixtures/nested2.json'
-    assert generate_diff(nested1j, nested2j) == open('./tests/fixtures/nested_test.txt').read() # noqa
+    assert generate_diff(nested1j, nested2j) == open('./tests/fixtures/stylish_test.txt').read() # noqa
+
+
+def test_compare3():
+    nested1j = './tests/fixtures/nested1.json'
+    nested2j = './tests/fixtures/nested2.json'
+    assert generate_diff(nested1j, nested2j, 'plain') == open('./tests/fixtures/plain_test.txt').read() # noqa
 
 
 def test_parsing():

@@ -37,7 +37,7 @@ def stylish(data):
             elif status == 'changed':
                 result += f'{indent}  - {key}: {format_value(item["value_old"], depth)}\n'  # noqa: E501
                 result += f'{indent}  + {key}: {format_value(item["value_new"], depth)}\n'  # noqa: E501
-            else:  # noqa: E501
+            else:
                 result += f'{indent}    {key}: {format_value(value, depth)}\n'
     result += '    ' * (depth) + '}'
     return result
