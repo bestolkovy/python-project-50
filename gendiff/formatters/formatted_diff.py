@@ -1,4 +1,5 @@
-from gendiff.formatters.stylish import stylish, plain
+from gendiff.formatters.stylish import stylish
+from gendiff.formatters.plain import plain
 
 
 def formatted_diff(diff, formatter):
