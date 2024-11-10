@@ -14,8 +14,7 @@ def dict_to_string(d, depth):
 
 def format_value(value, depth):
     if isinstance(value, dict):
-        formatted = dict_to_string(value, depth)
-        return formatted
+        return dict_to_string(value, depth)
     else:
         return str(value)
 
