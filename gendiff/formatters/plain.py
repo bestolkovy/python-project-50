@@ -1,34 +1,33 @@
 def format_value(value):
     if isinstance(value, dict):
         return '[complex value]'
-    
-
-def format_key(node): # нод список с ключами
-    if node['status'] == 'nested':
-        subkey = node['key']
-
+    if value == 'false' or value == 'true' or value == 'null':
+        return value
+    else:
+        return f"'{value}'"
 
 
-def plain(data):
-    result = ''
+def format_data(data, father_key=''):
+    result = []
     for item in data:
-        status = item['status']
-        key = item['key']
-        depth = item['depth']
-        value = item.get('value', None)
-        if status == 'nested':
-            for huy in value:
-                subkey = key
-                subkey += f".{huy['key']}"
-                result += f"{subkey}.\n" 
+        status = item.get('status')
+        key = item.get('key')
+        full_key = f'{father_key}.{key}' if father_key else key
         if status == 'added':
-            result += f"Property '{key}' was added with value: '{format_value(value)}'\n"
-        if status == 'deleted':
-            result += f"Property '{key}' was removed\n"
-        if status == 'changed':
+            value = item.get('value')
+            f_v = format_value(value)
+            result.append(f"Property '{full_key}' was added with value: {f_v}")
+        elif status == 'deleted':
+            result.append(f"Property '{full_key}' was removed")
+        elif status == 'changed':
             value_old = format_value(item['value_old'])
             value_new = format_value(item['value_new'])
-            result += f"Property {key}' was update. From '{value_old}' to '{value_new}'\n"
-        if status == 'unchanged':
-            result = result
+            result.append(f"Property '{full_key}' was updated. From {value_old} to {value_new}")  # noqa: E501
+        elif status == 'nested':
+            nested_changes = item.get('value')
+            result.extend(format_data(nested_changes, full_key))
     return result
+
+
+def plain(formated_data):
+    return '\n'.join(format_data(formated_data))
