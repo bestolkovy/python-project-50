@@ -1,3 +1,14 @@
+def format_value(value):
+    if isinstance(value, dict):
+        return '[complex value]'
+    
+
+def format_key(node): # нод список с ключами
+    if node['status'] == 'nested':
+        subkey = node['key']
+
+
+
 def plain(data):
     result = ''
     for item in data:
@@ -9,11 +20,15 @@ def plain(data):
             for huy in value:
                 subkey = key
                 subkey += f".{huy['key']}"
-                result += f'{subkey}\n' 
+                result += f"{subkey}.\n" 
         if status == 'added':
-            result += f'Property {key} was added with value: {value}\n'
+            result += f"Property '{key}' was added with value: '{format_value(value)}'\n"
         if status == 'deleted':
-            result += f'Property {key} was removed\n'
+            result += f"Property '{key}' was removed\n"
         if status == 'changed':
-            result += f'Property {key} was update. From {item["value_old"]} to {item["value_new"]}\n'
+            value_old = format_value(item['value_old'])
+            value_new = format_value(item['value_new'])
+            result += f"Property {key}' was update. From '{value_old}' to '{value_new}'\n"
+        if status == 'unchanged':
+            result = result
     return result

@@ -27,4 +27,5 @@ def diff_build(dict1, dict2, depth=0):
             diff.append({'status': 'changed', 'key': key, 'depth': depth,
                          'value_old': format_value(dict1[key]),
                          'value_new': format_value(dict2[key])})
+    print(diff)
     return diff
