@@ -11,3 +11,4 @@
 4. python3 -m pip install  dist/*.whl
 [![asciicast](https://asciinema.org/a/gh2IrNKLypoEJ5Ozi9uLvtFJz.svg)](https://asciinema.org/a/gh2IrNKLypoEJ5Ozi9uLvtFJz)
 [![asciicast](https://asciinema.org/a/667038.svg)](https://asciinema.org/a/667038)
+[![asciicast](https://asciinema.org/a/f39ROIDhvsmzCPY92KXqotbXi.svg)](https://asciinema.org/a/f39ROIDhvsmzCPY92KXqotbXi)
