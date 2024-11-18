@@ -1,7 +1,7 @@
 def format_value(value):
     if isinstance(value, dict):
         return '[complex value]'
-    if value == 'false' or value == 'true' or value == 'null':
+    if value == 'false' or value == 'true' or value == 'null' or type(value) is int: # noqa
         return value
     else:
         return f"'{value}'"
