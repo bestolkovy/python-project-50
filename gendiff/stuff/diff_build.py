@@ -17,7 +17,7 @@ def diff_build(dict1, dict2, depth=0):
             diff.append({'status': 'added', 'key': key, 'depth': depth,
                          'value': format_value(dict2[key])})
         elif isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
-            nested_diff = diff_build(dict1[key], dict2[key], depth+1)
+            nested_diff = diff_build(dict1[key], dict2[key], depth + 1)
             diff.append({'status': 'nested', 'key': key, 'depth': depth,
                          'value': nested_diff})
         elif dict1[key] == dict2[key]:

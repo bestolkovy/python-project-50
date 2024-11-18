@@ -1,6 +1,6 @@
 def dict_to_string(d, depth):
     result = ""
-    indent_space = "    " * (depth+1)
+    indent_space = "    " * (depth + 1)
     result += "{\n"
     for key, value in d.items():
         result += f"{indent_space}    {key}: "
