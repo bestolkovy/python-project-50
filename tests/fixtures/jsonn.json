@@ -8,7 +8,7 @@
         "status": "added",
         "key": "follow",
         "depth": 1,
-        "value": "false"
+        "value": false
       },
       {
         "status": "unchanged",
@@ -26,8 +26,8 @@
         "status": "changed",
         "key": "setting3",
         "depth": 1,
-        "value_old": "true",
-        "value_new": "null"
+        "value_old": true,
+        "value_new": null
       },
       {
         "status": "added",
