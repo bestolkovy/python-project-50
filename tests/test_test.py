@@ -1,8 +1,16 @@
 from gendiff import generate_diff
 from gendiff import parsing
+from gendiff import diff_build
+import json
 
 
-def test_compare():
+def test_nested_diff():
+    file1 = json.load(open('./tests/fixtures/nested1.json'))
+    file2 = json.load(open('./tests/fixtures/nested2.json'))
+    assert str(diff_build(file1, file2)) == open('./tests/fixtures/diff.txt').read() # noqa
+
+
+def tetest_compare():
     file1 = './tests/fixtures/file1.json'
     file2 = './tests/fixtures/file2.json'
     assert generate_diff(file1, file2) == open('./tests/fixtures/test1.txt').read() # noqa
