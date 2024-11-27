@@ -1,8 +1,8 @@
-def dict_to_string(d, depth):
+def dict_to_string(dictionary, depth):
     result = ""
     indent_space = "    " * (depth + 1)
     result += "{\n"
-    for key, value in d.items():
+    for key, value in dictionary.items():
         result += f"{indent_space}    {key}: "
         if isinstance(value, dict):
             result += dict_to_string(value, depth + 1) + '\n'
@@ -35,8 +35,10 @@ def stylish(data):
             elif status == 'deleted':
                 result += f'{indent}  - {key}: {format_value(value, depth)}\n'
             elif status == 'changed':
-                result += f'{indent}  - {key}: {format_value(item["value_old"], depth)}\n'  # noqa: E501
-                result += f'{indent}  + {key}: {format_value(item["value_new"], depth)}\n'  # noqa: E501
+                result += f'{indent}  - {key}: '
+                result += f'{format_value(item["value_old"], depth)}\n'
+                result += f'{indent}  + {key}: '
+                result += f'{format_value(item["value_new"], depth)}\n'
             else:
                 result += f'{indent}    {key}: {format_value(value, depth)}\n'
     result += '    ' * (depth) + '}'

@@ -1,7 +1,8 @@
 def format_value(value):
     if isinstance(value, dict):
         return '[complex value]'
-    if value == 'false' or value == 'true' or value == 'null' or type(value) is int: # noqa
+    if (value == 'false'
+            or value == 'true' or value == 'null' or type(value) is int):
         return value
     else:
         return f"'{value}'"
@@ -22,7 +23,9 @@ def format_data(data, father_key=''):
         elif status == 'changed':
             value_old = format_value(item['value_old'])
             value_new = format_value(item['value_new'])
-            result.append(f"Property '{full_key}' was updated. From {value_old} to {value_new}")  # noqa: E501
+            result.append(
+                f"Property '{full_key}' was updated. "
+                f"From {value_old} to {value_new}")
         elif status == 'nested':
             nested_changes = item.get('value')
             result.extend(format_data(nested_changes, full_key))
