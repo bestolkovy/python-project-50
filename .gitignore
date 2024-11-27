@@ -3,4 +3,3 @@ t0st.py
 dist/
 *.cast
 __pycache__/
-*.cost
